@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arduino Ajax I/O</title>
+    <script>
+		strLED1 = "";
+		strLED2 = "";
+		strLED3 = "";
+		strLED4 = "";
+		strLED5 = "";
+		strLED6 = "";
+		strLED7 = "";
+		strLED8 = "";
+		strLED9 = "";
+		strLED10 = "";
+		strLED11 = "";
+		strLED12 = "";
+		strLED13 = "";
+		strLED14 = "";
+		strLED15 = "";
+		strLED16 = "";
+		strLED17 = "";
+		
+		
+		var LED3_state = 0;
+		var LED4_state = 0;
+		var LED5_state = 0;
+		var LED6_state = 0;
+		var LED7_state = 0;
+		var LED8_state = 0;
+		var LED9_state = 0;
+		var LED10_state = 0;
+		var LED11_state = 0;
+		var LED12_state = 0;
+		var LED13_state = 0;
+		var LED14_state = 0;
+		var LED15_state = 0;
+		var LED16_state = 0;
+		var LED17_state = 0;
+		
+		
+		function GetArduinoIO()
+		{
+			nocache = "&nocache=" + Math.random() * 1000000;
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function()
+			{
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						if (this.responseXML != null) {
+							// XML file received - contains analog values, switch values and LED states
+							var count;
+							// get analog inputs
+							var num_an = this.responseXML.getElementsByTagName('analog').length;
+							for (count = 0; count < num_an; count++) {
+								document.getElementsByClassName("analog")[count].innerHTML =
+									this.responseXML.getElementsByTagName('analog')[count].childNodes[0].nodeValue;
+							}
+							// get switch inputs
+							var num_an = this.responseXML.getElementsByTagName('switch').length;
+							for (count = 0; count < num_an; count++) {
+								document.getElementsByClassName("switches")[count].innerHTML =
+									this.responseXML.getElementsByTagName('switch')[count].childNodes[0].nodeValue;
+							}
+							
+							
+							// LED 1
+							if (this.responseXML.getElementsByTagName('LED')[0].childNodes[0].nodeValue === "checked") {
+								document.LED_form.LED1.checked = true;
+							}
+							else {
+								document.LED_form.LED1.checked = false;
+							}
+							// LED 2
+							if (this.responseXML.getElementsByTagName('LED')[1].childNodes[0].nodeValue === "checked") {
+								document.LED_form.LED2.checked = true;
+							}
+							else {
+								document.LED_form.LED2.checked = false;
+							}																				
+							
+							
+							
+							// LED 3
+							if (this.responseXML.getElementsByTagName('LED')[2].childNodes[0].nodeValue === "on") {
+								//document.getElementById("LED3").innerHTML = "Quarto. ...LIGADO";
+								LED3_state = 1;
+								document.getElementById("LED3").innerHTML = "<span class='ft'></span>";
+							}
+							else {
+								document.getElementById("LED3").innerHTML = "DESLIGADO";
+								LED3_state = 0;
+								//document.getElementById("LED3").innerHTML = "<span class='mk'></span>";
+							}
+							
+							// LED 4
+							if (this.responseXML.getElementsByTagName('LED')[3].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED4").innerHTML = "LIGADO";
+								LED4_state = 1;
+								document.getElementById("LED4").innerHTML = "<span class='ft'></span>";
+							}
+							else {
+								document.getElementById("LED4").innerHTML = "DESLIGADO";
+								LED4_state = 0;
+							}
+							// LED 5
+							if (this.responseXML.getElementsByTagName('LED')[4].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED5").innerHTML = "LIGADO";
+								document.getElementById("LED5").innerHTML = "<span class='ft'></span>";
+								LED5_state = 1;
+							}
+							else {
+								document.getElementById("LED5").innerHTML = "DESLIGADO";
+								LED5_state = 0;
+								
+								}
+							// LED 6
+							if (this.responseXML.getElementsByTagName('LED')[5].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED6").innerHTML = "LIGADO";
+								document.getElementById("LED6").innerHTML = "<span class='ft'></span>";
+								LED6_state = 1;
+							}
+							else {
+								document.getElementById("LED6").innerHTML = "DESLIGADO";
+								LED6_state = 0;
+								
+								}
+								
+							// LED 7
+							if (this.responseXML.getElementsByTagName('LED')[6].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED7").innerHTML = "LIGADO";
+								document.getElementById("LED7").innerHTML = "<span class='ft'></span>";
+								LED7_state = 1;
+							}
+							else {
+								document.getElementById("LED7").innerHTML = "DESLIGADO";
+								LED7_state = 0;
+								
+								}
+								
+							// LED 8
+							if (this.responseXML.getElementsByTagName('LED')[7].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED8").innerHTML = "LIGADO";
+								document.getElementById("LED8").innerHTML = "<span class='ft'></span>";
+								LED8_state = 1;
+							}
+							else {
+								document.getElementById("LED8").innerHTML = "DESLIGADO";
+								LED8_state = 0;
+								
+								}
+								
+							// LED 9
+							if (this.responseXML.getElementsByTagName('LED')[8].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED9").innerHTML = "LIGADO";
+								document.getElementById("LED9").innerHTML = "<span class='ft'></span>";
+								LED9_state = 1;
+							}
+							else {
+								document.getElementById("LED9").innerHTML = "DESLIGADO";
+								LED9_state = 0;
+								
+								}
+								
+							// LED 10
+							if (this.responseXML.getElementsByTagName('LED')[9].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED10").innerHTML = "LIGADO";
+								document.getElementById("LED10").innerHTML = "<span class='ft'></span>";
+								LED10_state = 1;
+							}
+							else {
+								document.getElementById("LED10").innerHTML = "DESLIGADO";
+								LED10_state = 0;
+								
+								}
+								
+							// LED 11
+							if (this.responseXML.getElementsByTagName('LED')[10].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED11").innerHTML = "LIGADO";
+								document.getElementById("LED11").innerHTML = "<span class='ft'></span>";
+								LED11_state = 1;
+							}
+							else {
+								document.getElementById("LED11").innerHTML = "DESLIGADO";
+								LED11_state = 0;
+								
+								}
+								
+							// LED 12
+							if (this.responseXML.getElementsByTagName('LED')[11].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED12").innerHTML = "LIGADO";
+								document.getElementById("LED12").innerHTML = "<span class='ft'></span>";
+								LED12_state = 1;
+							}
+							else {
+								document.getElementById("LED12").innerHTML = "DESLIGADO";
+								LED12_state = 0;
+								}
+								
+							// LED 13
+							if (this.responseXML.getElementsByTagName('LED')[12].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED13").innerHTML = "LIGADO";
+								document.getElementById("LED13").innerHTML = "<span class='ft'></span>";
+								LED13_state = 1;
+							}
+							else {
+								document.getElementById("LED13").innerHTML = "DESLIGADO";
+								LED13_state = 0;
+								}
+								
+							// LED 14
+							if (this.responseXML.getElementsByTagName('LED')[13].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED14").innerHTML = "LIGADO";
+								document.getElementById("LED14").innerHTML = "<span class='ft'></span>";
+								LED14_state = 1;
+							}
+							else {
+								document.getElementById("LED14").innerHTML = "DESLIGADO";
+								LED14_state = 0;
+								}
+								
+							// LED 15
+							if (this.responseXML.getElementsByTagName('LED')[14].childNodes[0].nodeValue === "on") {								
+								document.getElementById("LED15").innerHTML = "LIGADO";
+								document.getElementById("LED15").innerHTML = "<span class='ft'></span>";
+								LED15_state = 1;
+								
+								}
+								else {								
+								document.getElementById("LED15").innerHTML = "DESLIGADO";
+								LED15_state = 0;
+								 
+							}
+								
+								
+							// LED 16
+							if (this.responseXML.getElementsByTagName('LED')[15].childNodes[0].nodeValue === "on") {
+								document.getElementById("LED16").innerHTML = "LIGADO";
+								document.getElementById("LED16").innerHTML = "<span class='ft'></span>";
+								LED16_state = 1;
+							}
+							else {
+								document.getElementById("LED16").innerHTML = "DESLIGADO";
+								LED16_state = 0;
+								}
+								
+							// LED 17
+							if (this.responseXML.getElementsByTagName('LED')[16].childNodes[0].nodeValue === "on") {								
+								document.getElementById("LED17").innerHTML = "LIGADO";
+								document.getElementById("LED17").innerHTML = "<span class='ft'></span>";
+								LED17_state = 1;
+								 
+							}
+							else {								
+								document.getElementById("LED17").innerHTML = "DESLIGADO";
+								LED17_state = 0;
+								 
+							}
+						}
+					}
+				}
+			}
+			// send HTTP GET request with LEDs to switch on/off if any
+			request.open("GET", "ajax_inputs" + strLED1 + strLED2 + strLED3 + strLED4 + strLED5 + strLED6 + strLED7 + strLED8 + strLED9 + strLED10 + strLED11 + strLED12 + strLED13 + strLED14 + strLED15+ strLED16 + strLED17 + nocache, true);
+			request.send(null);
+			setTimeout('GetArduinoIO()', 1000);
+			strLED1 = "";
+			strLED2 = "";
+			strLED3 = "";
+			strLED4 = "";
+			strLED5 = "";
+			strLED6 = "";
+			strLED7 = "";
+			strLED8 = "";
+			strLED9 = "";
+			strLED10 = "";
+			strLED11 = "";
+			strLED12 = "";
+			strLED13 = "";
+			strLED14 = "";
+			strLED15 = "";
+			strLED16 = "";
+			strLED17 = "";
+			
+		}
+		// service LEDs when checkbox checked/unchecked
+		function GetCheck()
+		{
+			if (LED_form.LED1.checked) {
+				strLED1 = "&LED1=1";
+			}
+			else {
+				strLED1 = "&LED1=0";
+			}
+			
+			
+			if (LED_form.LED2.checked) {
+				strLED2 = "&LED2=1";
+			}
+			else {
+				strLED2 = "&LED2=0";
+			
+				
+			}
+		}
+		
+		
+		
+		function GetButton1()
+		{
+			if (LED3_state === 1) {
+				LED3_state = 0;
+				strLED3 = "&LED3=0";
+			}
+			else {
+				LED3_state = 1;
+				strLED3 = "&LED3=1";
+			}
+		}
+		function GetButton2()
+		{
+			if (LED4_state === 1) {
+				LED4_state = 0;
+				strLED4 = "&LED4=0";
+			}
+			else {
+				LED4_state = 1;
+				strLED4 = "&LED4=1";
+			}
+		}
+		function GetButton3()
+		{
+			if (LED5_state === 1) {
+				LED5_state = 0;
+				strLED5 = "&LED5=0";
+			}
+			else {
+				LED5_state = 1;
+				strLED5 = "&LED5=1";
+			}
+		}
+		
+		function GetButton4()
+		{
+			if (LED6_state === 1) {
+				LED6_state = 0;
+				strLED6 = "&LED6=0";
+			}
+			else {
+				LED6_state = 1;
+				strLED6 = "&LED6=1";
+			}
+		}
+		
+		function GetButton5()
+		{
+			if (LED7_state === 1) {
+				LED7_state = 0;
+				strLED7 = "&LED7=0";
+			}
+			else {
+				LED7_state = 1;
+				strLED7 = "&LED7=1";
+			}
+		}
+		
+		function GetButton6()
+		{
+			if (LED8_state === 1) {
+				LED8_state = 0;
+				strLED8 = "&LED8=0";
+			}
+			else {
+				LED8_state = 1;
+				strLED8 = "&LED8=1";
+			}
+		}
+		
+		function GetButton7()
+		{
+			if (LED9_state === 1) {
+				LED9_state = 0;
+				strLED9 = "&LED9=0";
+			}
+			else {
+				LED9_state = 1;
+				strLED9 = "&LED9=1";
+			}
+		}
+		
+		function GetButton8()
+		{
+			if (LED10_state === 1) {
+				LED10_state = 0;
+				strLED10 = "&LED10=0";
+			}
+			else {
+				LED10_state = 1;
+				strLED10 = "&LED10=1";
+			}
+		}
+		
+		function GetButton9()
+		{
+			if (LED11_state === 1) {
+				LED11_state = 0;
+				strLED11 = "&LED11=0";
+			}
+			else {
+				LED11_state = 1;
+				strLED11 = "&LED11=1";
+			}
+		}
+		
+		function GetButton10()
+		{
+			if (LED12_state === 1) {
+				LED12_state = 0;
+				strLED12 = "&LED12=0";
+			}
+			else {
+				LED12_state = 1;
+				strLED12 = "&LED12=1";
+			}
+		}
+		
+		function GetButton11()
+		{
+			if (LED13_state === 1) {
+				LED13_state = 0;
+				strLED13 = "&LED13=0";
+			}
+			else {
+				LED13_state = 1;
+				strLED13 = "&LED13=1";
+			}
+		}
+		
+		function GetButton12()
+		{
+			if (LED14_state === 1) {
+				LED14_state = 0;
+				strLED14 = "&LED14=0";
+			}
+			else {
+				LED14_state = 1;
+				strLED14 = "&LED14=1";
+			}
+		}
+		
+		function GetButton13()
+		{
+			if (LED15_state === 1) {
+				LED15_state = 0;
+				strLED15 = "&LED15=0";
+			}
+			else {
+				LED15_state = 1;
+				strLED15 = "&LED15=1";
+				
+				}
+		}
+		
+		function GetButton14()
+		{
+			if (LED16_state === 1) {
+				LED16_state = 0;
+				strLED16 = "&LED16=0";
+			}
+			else {
+				LED16_state = 1;
+				strLED16 = "&LED16=1";
+			}
+		}
+		
+		function GetButton15()
+		{
+			if (LED17_state === 1) {
+				LED17_state = 0;
+				strLED17 = "&LED17=0";
+			}
+			else {
+				LED17_state = 1;
+				strLED17 = "&LED17=1";
+			}
+		}
+	</script>
+	<style>
+		.IO_box {
+	float: left;
+	border: 1px solid blue;
+	width: auto;
+	margin-top: 0;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	margin-left: 0;
+	padding-top: 0;
+	padding-right: 5px;
+	padding-bottom: 0;
+	padding-left: 10px;
+	background-color: #999;
+	color: #FF0000;
+		}
+		h3 {
+	font-size: 100%;
+	color: #FFF;
+	margin: 0 0 10px 0;
+	background-color: #663;
+		}
+		h4 {
+	font-size: 85%;
+	color: #FFFFFF;
+	margin: 5px 0 5px 0;
+		}
+		p, form, button {
+	font-size: 80%;
+	color: #FFFFFF;
+	border-top-width: thick;
+	border-right-width: thick;
+	border-bottom-width: thick;
+	border-left-width: thick;
+	border-top-style: groove;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+	border-top-color: #999;
+	border-right-color: #999;
+	border-bottom-color: #0FF;
+	border-left-color: #0FF;
+	height: auto;
+	width: auto;
+	cursor: pointer;
+	background-color: #666666;
+	font-weight: bold;
+		}
+		.small_text {
+	font-size: 50%;
+	color: #0000CC;
+		}
+	body {
+	background-color: #333;
+	color: #FFFFFF;
+}
+    .texto {
+	color: #FF0000;
+}
+    .texto2 {
+	color: #FFFFFF;
+}
+    .jm {
+	color: #00C;
+	background-color: #CCC;
+}
+     
+	 
+	 
+.mk {
+	width:200px;
+	background:#999;
+	margin:1px auto;
+	padding:20px;
+	font-size:20px; //tamanho da fonte
+	text-align:center;
+	box-shadow:10px 10px 5px #060;
+	-webkit-box-shadow: 10px 10px 5px #000;
+	-moz-box-shadow: 10px 10px 5px #000;
+	border-radius: 50px;
+	font-weight: bold;
+	font-style: italic;
+	cursor: pointer;
+	color: #00F;
+	text-shadow: -4px -4px 4px #FFC;		
+	}
+
+.mk:hover {
+    background-color: #666;       
+	transition:margin-left 1s;
+	margin-left:5px;
+	cursor: pointer; 
+	 color: #00F;
+	 font-weight: bold;
+	font-style: italic;
+	font-family: Verdana, Geneva, sans-serif;
+	 box-shadow:10px 10px 5px #FFC;
+  
+  }.mk:active {
+	background-color: #0F3;
+	margin-left: 5px;
+	cursor: pointer;
+	color: #FFF;
+	font-weight: bold;
+	font-style: italic;
+	font-family: Verdana, Geneva, sans-serif;
+	box-shadow:10px 10px 5px #FF0;
+    } 	 
+	 
+	 
+	 
+	 
+	 
+    .IO_box table tr td {
+	font-weight: bold;
+	font-style: italic;
+	cursor: pointer;
+	-webkit-transition: bottom;
+	-moz-transition: bottom;
+	-ms-transition: bottom;
+	-o-transition: bottom;
+	transition: bottom;
+	color: #00FFFF;
+	border-top-color: #0033FF;
+	border-right-color: #FF0000;
+	border-bottom-color: #00CC66;
+	border-left-color: #996699;
+}
+   
+    .bb {
+	color: #00FF99;
+	background-color: #00CC33;
+}
+    .IO_box #LED15 {
+	background-color: #09F;
+	cursor: pointer;
+	border-top-color: #0066CC;
+	border-right-color: #CCCC99;
+	border-bottom-color: #CCCC66;
+	border-left-color: #CCCC66;
+	
+}
+    .hy {
+	color: #00CC33;
+	background-color: #00FF99;
+}
+    .lt {
+	font-size: 14px;
+	color: #FFF;
+}
+    .fund {
+	background-color: #996600;
+	color: #CCCCCC;
+}
+
+
+	
+    .ft {    //classe rele ligado
+	width:300px;
+	background:#0F0; //cor do box
+	margin:2px auto;
+	padding:20px 40px;
+	font-size:30px; //tamanho da fonte
+	text-align:center;
+	box-shadow:20px 20px 5px #FFC;
+	-webkit-box-shadow: 10px 10px 5px #FFC;
+	-moz-box-shadow: 10px 10px 5px #FFC;
+	border-radius: 50px;
+	font-weight: bold;
+	font-style: italic;
+	cursor: pointer;
+	color: #000;
+	text-shadow: -4px -4px 4px #F00;	
+}
+   
+   
+   
+   
+
+
+ .jms {
+	width:1000px;
+	background:#666;
+	margin:1px auto;
+	padding:10px;
+	font-size:50px;
+	text-align:center;
+	box-shadow:20px 20px 10px #060;
+	-webkit-box-shadow: 20px 20px 10px #000;
+	-moz-box-shadow: 20px 20px 10px #000;
+	border-radius: 50px;
+	font-weight: bold;
+	font-style: italic;
+	cursor: pointer;
+	color: #000;
+	text-shadow: -4px -4px 4px #FC3;		
+	}
+
+.jms:hover {
+    background-color: #0000FF;       
+	transition:margin-left 1s;
+	margin-left:10px;
+	cursor: pointer; 
+	 color: #000;
+	 box-shadow:20px 20px 20px #FF0;
+  
+  }
+  .jms:active {
+	background-color: #0F3;
+	margin-left: 5px;
+	cursor: pointer;
+	color: #000;
+	font-weight: bold;
+	font-style: italic;
+	font-family: Verdana, Geneva, sans-serif;
+	box-shadow:20px 20px 20px #FF0;
+    }  
+
+
+    .IO_box h1 {
+	color: #00CC33;
+}
+    .box2 {
+	background-color: #666;
+	border-radius: 50px;
+}
+
+ .camera {
+	width:1000px;
+	background:#666;
+	margin:1px auto;
+	padding:10px;
+	font-size:50px;
+	text-align:center;
+	box-shadow:20px 20px 10px #060;
+	-webkit-box-shadow: 20px 20px 10px #000;
+	-moz-box-shadow: 20px 20px 10px #000;
+	border-radius: 50px;
+	font-weight: bold;
+	font-style: italic;
+	cursor: pointer;
+	color: #000;
+	text-shadow: -4px -4px 4px #FC3;		
+	}
+
+.camera:hover {
+    background-color: #999;       
+	transition:margin-left 1s;
+	margin-left:10px;
+	cursor: pointer; 
+	 color: #000;
+	 box-shadow:20px 20px 20px #FF0;
+  
+  }
+  .camera:active {
+	background-color: #0F3;
+	margin-left: 5px;
+	cursor: pointer;
+	color: #000;
+	font-weight: bold;
+	font-style: italic;
+	font-family: Verdana, Geneva, sans-serif;
+	box-shadow:20px 20px 20px #FF0;
+    }  
+
+
+
+
+    #cmer {
+	color: #000099;
+}
+
+.btn:focus, .btn::-moz-focus-inner{
+  outline:none;
+  border:none;
+}
+.btn{
+  font-family: arial;
+  font-size:14px;
+  text-transform: uppercase;
+  font-weight:700;
+  border:none;
+  padding:10px;
+  cursor: pointer;
+  display:inline-block;
+  text-decoration: none;
+}
+.btn-green{
+  background:green;
+  color:#fff;
+  box-shadow:0 5px 0 #006000;
+}
+.btn-green:hover{
+  background:#006000;
+  box-shadow:0 5px 0 #003f00;
+}
+.btn-purple{
+  background:purple;
+  color:#fff;
+  box-shadow:0 5px 0 #670167;
+}
+.btn-purple:hover{
+  background:#670167;
+  box-shadow:0 5px 0 #470047;
+}
+.btn-red{
+  background:red;
+  color:#fff;
+  box-shadow:0 5px 0 #d20000;
+}
+.btn-red:hover{
+  background:#d20000;
+  box-shadow:0 5px 0 #b00000;
+}
+.btn-green:active, .btn-purple:active, .btn-red:active{
+  position:relative;
+  top:5px;
+  box-shadow:none;
+}
+   
+    </style>
+    <meta charset="utf-8">
+    </head>
+    
+    
+    
+    
+    
+    
+<body leftmargin="50" topmargin="10" onload="GetArduinoIO()">
+       
+       
+<table width="1203" border="1">
+  <tr>
+    <td width="1193" bgcolor="#0066CC" class="jms">JOAO MARIANO DA SILVA</td>
+  </tr>
+</table>
+<p>-----------------INPUT: 2, 3, 5  ----------OUTPUT: 8, 9, 11, 12, 31, 33, 35, 37, 39, 41, 45, 47, 49, 51, ----------COMANDOS DIRETOS VIA  ETHERNET SHILD E ARDUINO MEGA---------------<table width="1198" border="5" align="left" cellpadding="1" cellspacing="1" class="linha">
+  <tr>
+    <th width="121" height="54" bgcolor="#006666" scope="col"><p><a href="https://www.itfuture.com.br/" class="btn btn-purple">ITFUTURE</a></p></th>
+    <th width="116" bgcolor="#006666" scope="col"><p><a href="https://sites.google.com/site/silvamariano116/" class="btn btn-purple">GOOGLE</a></p></th>
+    <th width="115" bgcolor="#006666" scope="col"><p><a href="https://sites.google.com/site/silvamariano116/" class="btn btn-purple">UNITY</a></p></th>
+    <th width="121" bgcolor="#006666" scope="col"><p><a href="https://translate.google.com.br/" class="btn btn-purple">TRADUTOR</a></p></th>
+    <th width="120" bgcolor="#006666" scope="col"><p><a href="https://unity.com/madewith" class="btn btn-purple">Acessar</a></p></th>
+    <th width="112" bgcolor="#006633" scope="col"><p><a href="http://mariano76.ddns.net:8484/Login.htm" class="btn btn-purple">Acessar</a></p></th>
+    <th width="110" bgcolor="#006633" scope="col"><p><a class="btn btn-purple">Acessar</a></p></th>
+    <th width="113" bgcolor="#006633" scope="col"><p><a class="btn btn-purple">Acessar</a></p></th>
+    <th width="110" bgcolor="#006633" scope="col"><p><a class="btn btn-purple">Acessar</a></p></th>
+    <th width="122" bgcolor="#006633" scope="col"><p><a class="btn btn-purple">Acessar</a></p></th>
+  </tr>
+</table></p>
+<table width="1200" border="2">
+  <tr>
+    <td width="293" bgcolor="#333333" class="box1"><span class="box3">...CONTROLE DOS CANAIS....</span></td>
+    <td width="588" bgcolor="#666633" class="box1"><marquee behavior="alternate" width="700" eigth="50" scrollamount="2"
+direction="left" onmouseover="this.stop()" onmouseout="this.start()">
+APERTE OSBOTOES PARA ACIONAR AS CARGAS</marquee></td>
+    <td width="295" bgcolor="#333333" class="box1"><strong><em>.CONTROLE DE TEMPERATURA</em></strong></td>
+  </tr>
+</table>
+
+        
+        
+    
+        
+
+      
+      
+		
+    
+    
+    
+	    	
+			        
+            
+<table width="1196" border="1" cellpadding="2">
+  <tr>
+    <td width="202" height="422" bgcolor="#666633"><div class="IO_box">
+		  <h1>Switch Inputs</h1>
+			<h2><p class="small_text">D0: used by serial RX</p></h2>
+			<h2><p class="small_text">D1: used by serial TX</p></h2>
+			<h2><p>Switch 1 (D2): <span class="switches">...</span></p></h2>
+			<h2><p>Switch 2 (D3): <span class="switches">...</span></p></h2>
+			<h2><p class="small_text">D4: used by Ethernet shield</p></h2>
+			<h2><p>Switch 3 (D5): <span class="switches">...</span></p></h2>
+            <h2><p>Switch 3 (D6): <span class="switches">...</span></p></h2>
+             <h2><p>Switch 3 (D6): <span class="switches">...</span></p></h2>
+               <h2><p>Switch 3 (D6): <span class="switches">...</span></p></h2>
+</div>
+    
+    </td>
+    <td width="398" bgcolor="#666633">
+    <div> <button type="button" class="mk" id="LED3" onclick="GetButton1()"> <span class="lt">Quart</span></button>
+    SALA</div>
+    <div> <button type="button" class="mk" id="LED4" onclick="GetButton2()"> <span class="lt">Quart</span></button>
+    COZINHA</div>
+    <div> <button type="button" class="mk" id="LED5" onclick="GetButton3()"> <span class="lt">Quart</span></button>
+    LAVANDERIA</div>
+    <div> <button type="button" class="mk" id="LED6" onclick="GetButton4()"> <span class="lt">Quart</span></button>
+     BANHEIRO</div>
+    <div> <button type="button" class="mk" id="LED7" onclick="GetButton5()"> <span class="lt">Quart</span></button>
+    COPA</div>
+    <div> <button type="button" class="mk" id="LED8" onclick="GetButton6()"> <span class="lt">Quart</span></button>
+    QUARTO</div> 
+    <div> <button type="button" class="mk" id="LED9" onclick="GetButton7()"> <span class="lt">Quart</span></button>
+    QUARTO</div>   
+    </td>
+    
+    <td width="386" nowrap bgcolor="#666633">
+    <div> <button type="button" class="mk" id="LED10" onclick="GetButton8()"> <span class="lt">Quart</span></button>
+    AREA</div>
+    <div> <button type="button" class="mk" id="LED11" onclick="GetButton9()"> <span class="lt">Quart</span></button>
+    GARAGEM</div>
+    <div><button type="button" class="mk" id="LED12" onclick="GetButton10()"> <span class="lt">Quart</span></button>
+    CALCADA</div>
+    <div><button type="button" class="mk" id="LED13" onclick="GetButton11()"> <span class="lt">Quart</span></button>
+    QUARTO2</div>
+    <div><button type="button" class="mk" id="LED14" onclick="GetButton12()"> <span class="lt">Quart</span></button>
+    ROOL </div>
+    <div> <button type="button" class="mk" id="LED15" onclick="GetButton13()"> <span class="lt">Quart</span></button>
+    SALAO</div>
+    <div> <button type="button" class="mk" id="LED16" onclick="GetButton14()"> <span class="lt">Quart</span></button>
+    SALAO</div>
+    </td>
+    
+    
+    <td width="174" nowrap bgcolor="#666633"><div class="IO_box">
+	  <h1>Inputs </h1>
+		  <h1>Analogico</h1>
+			<p class="small_text"><span class="texto">A0 used by Ethernet</span> shield</p>
+			
+            
+			<h1><p>A2: <span class="analog">...</span></p></h1>
+			<h1><p>A3: <span class="analog">...</span></p></h1>
+			<h1><p>A4: <span class="analog">...</span></p></h1>
+			<h1><p>A5: <span class="analog">...</span></p></h1>
+            
+            <div class="IO_box">
+	  <form id="check_LEDs" name="LED_form">
+		  <input type="checkbox" name="LED1" value="0" onclick="GetCheck()" />
+				QUARTO (D6)<br /><br />
+				<input type="checkbox" name="LED2" value="0" onclick="GetCheck()" />
+				SALA (D7)<br /><br />
+			</form>           
+                      
+	</div>
+</div></td>
+  </tr>
+</table>
+
+
+
+
+
+<table width="1203" border="1">
+  <tr>
+    <td width="1193" bgcolor="#999999" class="camera"><a href="http://mariano76.ddns.net:8484/">CONTROLE SISTEMAS DE CAMERAS</a></td>
+  </tr>
+</table>
+              <br />
+              <table width="1200" border="1">
+                <tr>
+                  <td bgcolor="#333333"><a href="https://www.itfuture.com.br/" class="sw">ITFUTURE</a></td>
+                </tr>
+              </table>
+             
+            
+            
+	 
+</body>
+    
+    
+                
+</html>
